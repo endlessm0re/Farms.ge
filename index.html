@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farms.ge — ქართული აგრო მარკეტპლეისი | პირდაპირ ფერმერებისგან</title>
+  <meta name="description" content="იპოვე ყველაფერი ქართული ფერმებიდან ერთ სივრცეში. ნატურალური პროდუქტები, საოჯახო მარნები, აგროტურიზმი და ტექნიკა პირდაპირ ადგილობრივი მწარმოებლებისგან.">
+  
+  <!-- Georgian Typography: FiraGO & Noto Sans Georgian -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=FiraGO:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="badge-geo">🇬🇪 100% ქართული წარმოება</span>
+        <span class="topbar-text">უფასო მიწოდება პირველ შეკვეთაზე 50 ₾-დან მთელ საქართველოში!</span>
+      </div>
+      <div class="topbar-right">
+        <div class="region-picker">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="currentRegionLabel">ყველა რეგიონი</span>
+        </div>
+        <span class="topbar-divider">|</span>
+        <a href="#become-seller" class="topbar-link">გახდი გამყიდველი</a>
+        <span class="topbar-divider">|</span>
+        <button class="lang-switch active" type="button">ქარ</button>
+        <button class="lang-switch" type="button">ENG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="header" id="mainHeader">
+    <div class="container header-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" id="logoLink">
+        <div class="logo-icon-wrapper">
+          <svg viewBox="0 0 40 40" fill="none" class="brand-svg">
+            <rect width="40" height="40" rx="10" fill="#1B4332"/>
+            <path d="M20 7C14 11 11 17 11 24C11 28 14 31 18 31C22 31 29 27 29 16C29 12 25 8 20 7Z" fill="#52B788"/>
+            <path d="M20 12C16 15 14 19 14 24C14 26.5 16 28.5 18.5 28.5C21 28.5 26 25.5 26 18C26 15 23 13 20 12Z" fill="#D8F3DC"/>
+            <path d="M19 12V32" stroke="#1B4332" stroke-width="2" stroke-linecap="round"/>
+            <path d="M19 23C22 21 24 19 26 17" stroke="#1B4332" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M19 27C17 25 15 24 13 24" stroke="#1B4332" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <span class="brand-name">Farms<span class="brand-dot">.ge</span></span>
+          <span class="brand-tagline">აგრო მარკეტპლეისი</span>
+        </div>
+      </a>
+
+      <!-- Header Search Bar -->
+      <div class="header-search-wrap">
+        <form class="header-search-form" id="headerSearchForm" onsubmit="event.preventDefault(); handleSearch(event);">
+          <div class="header-search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="headerSearchInput" placeholder="რას ეძებ? (მაგ. სულგუნი, თაფლი, ღვინო...)" autocomplete="off">
+            <button type="submit" class="header-search-btn" aria-label="მოძებნა">
+              <span>ძებნა</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link active">მთავარი</a>
+        <a href="#categories" class="nav-link">კატეგორიები</a>
+        <a href="#products" class="nav-link">პროდუქტები</a>
+        <a href="#farmers" class="nav-link">ფერმები</a>
+        <a href="#agritourism" class="nav-link">აგროტურიზმი</a>
+        <a href="#machinery" class="nav-link">ტექნიკა</a>
+      </nav>
+
+      <!-- User Actions (Auth & Cart) -->
+      <div class="header-actions">
+        <button class="btn-ghost auth-btn" id="openAuthModalBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="auth-text">შესვლა</span>
+        </button>
+
+        <button class="btn-primary-outline register-btn" id="openRegisterModalBtn">
+          <span>რეგისტრაცია</span>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="icon-btn wishlist-toggle-btn" id="wishlistBtn" aria-label="რჩეულები" title="შენახული პროდუქტები">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="action-badge" id="wishlistCount">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="icon-btn cart-toggle-btn" id="cartBtn" aria-label="კალათა" title="კალათის ნახვა">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="action-badge cart-badge" id="cartCount">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="hamburger-btn" id="mobileMenuBtn" aria-label="მენიუს გახსნა">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <span class="drawer-brand">Farms.ge</span>
+      <button class="drawer-close-btn" id="closeDrawerBtn">&times;</button>
+    </div>
+    <div class="drawer-search">
+      <input type="text" id="mobileSearchInput" placeholder="რას ეძებ?">
+      <button type="button" class="drawer-search-btn" onclick="handleMobileSearch()">ძებნა</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#hero" class="drawer-link">მთავარი</a>
+      <a href="#categories" class="drawer-link">კატეგორიები</a>
+      <a href="#products" class="drawer-link">პროდუქტები</a>
+      <a href="#farmers" class="drawer-link">ფერმები და მწარმოებლები</a>
+      <a href="#agritourism" class="drawer-link">აგროტურიზმი</a>
+      <a href="#machinery" class="drawer-link">ტექნიკა</a>
+      <a href="#become-seller" class="drawer-link highlight">ფერმერად დარეგისტრირება</a>
+    </div>
+    <div class="drawer-actions">
+      <button class="btn-primary full-width" onclick="openAuthModal('login')">შესვლა</button>
+      <button class="btn-secondary full-width" onclick="openAuthModal('register')">რეგისტრაცია</button>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-container">
+      
+      <div class="hero-content">
+        
+        <div class="hero-pill">
+          <span class="pill-sparkle">🌱</span>
+          <span>პირველი ერთიანი ქართული აგრო პლატფორმა</span>
+        </div>
+
+        <h1 class="hero-title">
+          იპოვე ყველაფერი ქართული ფერმებიდან <span class="hero-title-accent">— ერთ სივრცეში.</span>
+        </h1>
+
+        <p class="hero-description">
+          აღმოაჩინე ნატურალური პროდუქტები, საოჯახო მარნები, აგროტურიზმი და ფერმერული სერვისები პირდაპირ ადგილობრივი მწარმოებლებისგან. შეუკვეთე შუამავლების გარეშე მთელი საქართველოდან.
+        </p>
+
+        <!-- Big Marketplace Search Hub -->
+        <div class="hero-search-card">
+          
+          <div class="search-tabs">
+            <button class="search-tab active" data-search-type="all">ყველაფერი</button>
+            <button class="search-tab" data-search-type="products">პროდუქტები</button>
+            <button class="search-tab" data-search-type="farms">ფერმები</button>
+            <button class="search-tab" data-search-type="tourism">აგროტურიზმი</button>
+          </div>
+
+          <form class="hero-search-form" id="heroSearchForm" onsubmit="event.preventDefault(); handleHeroSearch();">
+            <div class="hero-search-inputs">
+              
+              <!-- Query Input -->
+              <div class="search-field query-field">
+                <svg class="field-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <div class="field-text-wrap">
+                  <label for="heroSearchInput">რას ეძებთ?</label>
+                  <input type="text" id="heroSearchInput" placeholder="მოძებნე პროდუქტი, ფერმა ან მომსახურება..." autocomplete="off">
+                </div>
+              </div>
+
+              <div class="field-divider"></div>
+
+              <!-- Region Selector -->
+              <div class="search-field region-field">
+                <svg class="field-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div class="field-text-wrap">
+                  <label for="heroRegionSelect">რეგიონი</label>
+                  <select id="heroRegionSelect">
+                    <option value="all">ყველა რეგიონი</option>
+                    <option value="კახეთი">კახეთი</option>
+                    <option value="იმერეთი">იმერეთი</option>
+                    <option value="ქვემო ქართლი">ქვემო ქართლი</option>
+                    <option value="შიდა ქართლი">შიდა ქართლი</option>
+                    <option value="სამეგრელო">სამეგრელო</option>
+                    <option value="რაჭა-ლეჩხუმი">რაჭა-ლეჩხუმი</option>
+                    <option value="გურია">გურია</option>
+                    <option value="აჭარა">აჭარა</option>
+                    <option value="სამცხე-ჯავახეთი">სამცხე-ჯავახეთი</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="hero-search-submit-btn" id="heroSubmitBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>მოძებნა</span>
+              </button>
+
+            </div>
+          </form>
+
+          <!-- Popular Search Tags -->
+          <div class="popular-tags-wrap">
+            <span class="tags-label">🔥 პოპულარული ძებნა:</span>
+            <div class="tags-list">
+              <button class="tag-chip" onclick="quickSearch('სულგუნი')">სულგუნი</button>
+              <button class="tag-chip" onclick="quickSearch('თაფლი')">ალპური თაფლი</button>
+              <button class="tag-chip" onclick="quickSearch('საფერავი')">ქვევრის საფერავი</button>
+              <button class="tag-chip" onclick="quickSearch('ბოსტნეული')">სეზონური ბოსტნეული</button>
+              <button class="tag-chip" onclick="quickSearch('ლორი')">რაჭული ლორი</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick Stats Banner -->
+        <div class="hero-stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">რეგისტრირებული ფერმერი</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">ნატურალური & ქართული</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">12</span>
+            <span class="stat-label">საქართველოს ყველა კუთხე</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Visual Showcase with Floating Trust Cards -->
+      <div class="hero-visual-side">
+        <div class="hero-image-frame">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" 
+               alt="ქართული ფერმერული ვენახები და მინდვრები" 
+               class="hero-img-main"
+               loading="eager">
+          <div class="image-gradient-overlay"></div>
+
+          <!-- Floating Badge 1: Verified Farmer -->
+          <div class="floating-badge badge-farmer">
+            <div class="badge-avatar">
+              <img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&w=150&q=80" alt="ფერმერი გიორგი">
+            </div>
+            <div class="badge-info">
+              <div class="badge-title-row">
+                <span class="badge-name">გიორგი მელაძე</span>
+                <span class="verified-check" title="ვერიფიცირებული მწარმოებელი">✓</span>
+              </div>
+              <span class="badge-sub">ლაგოდეხი, კახეთი • 25 წელი მეფუტკრეობაში</span>
+              <div class="badge-stars">★★★★★ <span>4.98 (120+ შეფასება)</span></div>
+            </div>
+          </div>
+
+          <!-- Floating Badge 2: Daily Fresh Quality -->
+          <div class="floating-badge badge-freshness">
+            <div class="fresh-icon-box">🧀</div>
+            <div class="badge-info">
+              <span class="badge-name">დილის წველის სულგუნი</span>
+              <span class="badge-sub">ახალი მოსავალი პირდაპირ ფერმიდან</span>
+            </div>
+          </div>
+
+          <!-- Floating Badge 3: Fast Delivery Nationwide -->
+          <div class="floating-badge badge-delivery">
+            <div class="delivery-icon-box">🚚</div>
+            <div class="badge-info">
+              <span class="badge-name">სწრაფი მიწოდება</span>
+              <span class="badge-sub">თბილისსა და რეგიონებში</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="section-pretitle">
+          <span class="leaf-icon">🌿</span>
+          <span>მრავალფეროვანი არჩევანი</span>
+        </div>
+        <h2 class="section-title">დაათვალიერე კატეგორიები</h2>
+        <p class="section-subtitle">აირჩიე შენთვის სასურველი მიმართულება და იპოვე საუკეთესო პროდუქცია პირდაპირ მწარმოებლისგან</p>
+      </div>
+
+      <div class="categories-grid" id="categoriesGrid">
+        
+        <!-- Category 1: ბოსტნეული და ხილი -->
+        <div class="category-card" onclick="filterByCategory('produce')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=600&q=80" alt="ბოსტნეული და ხილი" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🍅</div>
+            <h3 class="category-name">ბოსტნეული და ხილი</h3>
+            <span class="category-count">180+ პროდუქტი</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 2: თაფლი -->
+        <div class="category-card" onclick="filterByCategory('honey')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80" alt="ნატურალური თაფლი" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🍯</div>
+            <h3 class="category-name">თაფლი და მეფუტკრეობა</h3>
+            <span class="category-count">45+ მეფუტკრე</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 3: რძის პროდუქტები -->
+        <div class="category-card" onclick="filterByCategory('dairy')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=600&q=80" alt="რძის პროდუქტები და ყველი" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🧀</div>
+            <h3 class="category-name">რძის პროდუქტები</h3>
+            <span class="category-count">95+ სახეობა</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 4: ხორცი -->
+        <div class="category-card" onclick="filterByCategory('meat')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=600&q=80" alt="ხორცი და ფრინველი" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🥩</div>
+            <h3 class="category-name">ხორცი და ფრინველი</h3>
+            <span class="category-count">60+ პროდუქტი</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 5: ღვინო -->
+        <div class="category-card" onclick="filterByCategory('wine')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" alt="ქართული ქვევრის ღვინო" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🍷</div>
+            <h3 class="category-name">ღვინო და მარანი</h3>
+            <span class="category-count">120+ საოჯახო მარანი</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 6: თესლი და ნერგები -->
+        <div class="category-card" onclick="filterByCategory('seeds')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=600&q=80" alt="თესლი და ნერგები" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🌱</div>
+            <h3 class="category-name">თესლი და ნერგები</h3>
+            <span class="category-count">75+ ჯიში</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 7: სასოფლო-სამეურნეო ტექნიკა -->
+        <div class="category-card" onclick="filterByCategory('machinery')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1595188802202-bcf23cece885?auto=format&fit=crop&w=600&q=80" alt="სასოფლო-სამეურნეო ტექნიკა" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🚜</div>
+            <h3 class="category-name">სასოფლო ტექნიკა</h3>
+            <span class="category-count">40+ ერთეული</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Category 8: აგროტურიზმი -->
+        <div class="category-card" onclick="filterByCategory('tourism')">
+          <div class="category-img-wrap">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="აგროტურიზმი და ფერმერული ტურები" loading="lazy">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-content">
+            <div class="category-icon-bubble">🏡</div>
+            <h3 class="category-name">აგროტურიზმი</h3>
+            <span class="category-count">35+ ლოკაცია</span>
+            <span class="category-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marketplace Products Section -->
+  <section class="products-section" id="products">
+    <div class="container">
+      
+      <div class="products-header-row">
+        <div>
+          <div class="section-pretitle">
+            <span class="leaf-icon">🛒</span>
+            <span>პირდაპირ ფერმიდან</span>
+          </div>
+          <h2 class="section-title">პოპულარული პროდუქტები</h2>
+          <p class="section-subtitle">ახალი, სეზონური და ნატურალური პროდუქტები სანდო ქართველი ფერმერებისგან</p>
+        </div>
+
+        <!-- Category Pills Filter Bar -->
+        <div class="filter-pills-row" id="productFilterPills">
+          <button class="pill-btn active" data-filter="all">ყველა</button>
+          <button class="pill-btn" data-filter="dairy">რძის ნაწარმი</button>
+          <button class="pill-btn" data-filter="honey">თაფლი</button>
+          <button class="pill-btn" data-filter="produce">ბოსტნეული & ხილი</button>
+          <button class="pill-btn" data-filter="wine">ღვინო</button>
+          <button class="pill-btn" data-filter="meat">ხორცი & დელიკატესები</button>
+        </div>
+      </div>
+
+      <!-- Active Search / Filter Feedback Bar -->
+      <div class="active-filter-bar hidden" id="activeFilterBar">
+        <span id="activeFilterText">ფილტრი აქტიურია</span>
+        <button class="clear-filter-btn" onclick="resetFilters()">გასუფთავება ✕</button>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Injected via JavaScript from productsData -->
+      </div>
+
+      <!-- Load More / Marketplace Link -->
+      <div class="marketplace-cta-row">
+        <button class="btn-primary-large" id="loadMoreProductsBtn" onclick="toggleAllProducts()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span id="loadMoreText">ყველა პროდუქტის ნახვა (140+)</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Banner: Experience Direct Farm To Table -->
+  <section class="farm-feature-banner">
+    <div class="container feature-banner-container">
+      <div class="feature-banner-content">
+        <span class="badge-gold">🌱 გარანტირებული ხარისხი</span>
+        <h2>იცი საიდან მოდის შენი საჭმელი?</h2>
+        <p>Farms.ge-ზე ყოველ პროდუქტს აქვს სახელი, ისტორია და კონკრეტული სოფლის მისამართი. ჩვენ ვეხმარებით ადგილობრივ მეურნეობებს განვითარებაში, შენ კი იღებ უმაღლესი ხარისხის ჯანსაღ საკვებს.</p>
+        <div class="feature-list">
+          <div class="feature-point">
+            <span class="point-icon">✓</span>
+            <span>შუამავლებისა და ზედმეტი ფასნამატის გარეშე</span>
+          </div>
+          <div class="feature-point">
+            <span class="point-icon">✓</span>
+            <span>პირდაპირი კონტაქტი ფერმერთან</span>
+          </div>
+          <div class="feature-point">
+            <span class="point-icon">✓</span>
+            <span>ეკოლოგიურად სუფთა და ლაბორატორიულად შემოწმებული</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-banner-visual">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="ნატურალური ქართული პროდუქტები" class="feature-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- Farmers / Producers Section -->
+  <section class="farmers-section" id="farmers">
+    <div class="container">
+      
+      <div class="section-header center">
+        <div class="section-pretitle">
+          <span class="leaf-icon">🧑‍🌾</span>
+          <span>ადგილობრივი მეწარმეები</span>
+        </div>
+        <h2 class="section-title">გაიცანი ქართველი მწარმოებლები</h2>
+        <p class="section-subtitle">ადამიანები, რომლებიც ქმნიან ხარისხიან, ნატურალურ პროდუქტს საქართველოს სხვადასხვა კუთხეში</p>
+      </div>
+
+      <div class="farmers-grid" id="farmersGrid">
+        
+        <!-- Farmer 1 -->
+        <div class="farmer-card">
+          <div class="farmer-header-banner banner-kakheti"></div>
+          <div class="farmer-card-body">
+            <div class="farmer-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&w=300&q=80" alt="გიორგი მელაძე" class="farmer-avatar">
+              <span class="farmer-verify-badge" title="ვერიფიცირებული ფერმერი">✓</span>
+            </div>
+            <div class="farmer-meta">
+              <div class="farmer-region">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>კახეთი, ლაგოდეხი</span>
+              </div>
+              <h3 class="farmer-name">გიორგი მელაძე</h3>
+              <span class="farm-brand">„მელაძის საფუტკრე“</span>
+              <div class="farmer-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-num">4.98</span>
+                <span class="reviews-count">(124 შეფასება)</span>
+              </div>
+              <p class="farmer-bio">
+                „25 წელია მე და ჩემი ოჯახი ლაგოდეხის ნაკრძალის ძირში ალპური და მაისის თაფლს ვაწარმოებთ. ჩვენი საფუტკრე მთლიანად ველურ ბუნებაშია განთავსებული.“
+              </p>
+              <div class="farmer-tags">
+                <span class="ftag">ალპური თაფლი</span>
+                <span class="ftag">დინდგელი</span>
+                <span class="ftag">ფუტკრის რძე</span>
+              </div>
+              <div class="farmer-card-footer">
+                <span class="farmer-product-count">14 პროდუქტი</span>
+                <button class="btn-farmer-view" onclick="openFarmerDetails(1)">ფერმის ნახვა →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmer 2 -->
+        <div class="farmer-card">
+          <div class="farmer-header-banner banner-imereti"></div>
+          <div class="farmer-card-body">
+            <div class="farmer-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1592621385612-4d7129426394?auto=format&fit=crop&w=300&q=80" alt="ნინო გელაშვილი" class="farmer-avatar">
+              <span class="farmer-verify-badge" title="ვერიფიცირებული ფერმერი">✓</span>
+            </div>
+            <div class="farmer-meta">
+              <div class="farmer-region">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>იმერეთი, ხონი</span>
+              </div>
+              <h3 class="farmer-name">ნინო გელაშვილი</h3>
+              <span class="farm-brand">„იმერული საოჯახო ყველი“</span>
+              <div class="farmer-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-num">5.0</span>
+                <span class="reviews-count">(98 შეფასება)</span>
+              </div>
+              <p class="farmer-bio">
+                „ჩვენი ძროხები თავისუფლად იკვებებიან იმერეთის ალპურ საძოვრებზე. ყველი მზადდება მხოლოდ დილის ახალმოწველილი ნედლი რძით, ტრადიციული წესით.“
+              </p>
+              <div class="farmer-tags">
+                <span class="ftag">იმერული ყველი</span>
+                <span class="ftag">ჭყინტი ყველი</span>
+                <span class="ftag">ნადუღი</span>
+              </div>
+              <div class="farmer-card-footer">
+                <span class="farmer-product-count">8 პროდუქტი</span>
+                <button class="btn-farmer-view" onclick="openFarmerDetails(2)">ფერმის ნახვა →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmer 3 -->
+        <div class="farmer-card">
+          <div class="farmer-header-banner banner-kvareli"></div>
+          <div class="farmer-card-body">
+            <div class="farmer-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="დავით ხუციშვილი" class="farmer-avatar">
+              <span class="farmer-verify-badge" title="ვერიფიცირებული ფერმერი">✓</span>
+            </div>
+            <div class="farmer-meta">
+              <div class="farmer-region">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>კახეთი, ყვარელი</span>
+              </div>
+              <h3 class="farmer-name">დავით ხუციშვილი</h3>
+              <span class="farm-brand">„ხუციშვილის ქვევრის მარანი“</span>
+              <div class="farmer-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-num">4.95</span>
+                <span class="reviews-count">(142 შეფასება)</span>
+              </div>
+              <p class="farmer-bio">
+                „ბაბუის გაშენებული 80-წლიანი ვენახი. ვაწარმოებთ ბიოდინამიკურ საფერავსა და რქაწითელს ქვევრში, 8000-წლიანი ქართული ტრადიციის სრული დაცვით.“
+              </p>
+              <div class="farmer-tags">
+                <span class="ftag">ქვევრის საფერავი</span>
+                <span class="ftag">რქაწითელი</span>
+                <span class="ftag">ჭაჭა</span>
+              </div>
+              <div class="farmer-card-footer">
+                <span class="farmer-product-count">6 ღვინო</span>
+                <button class="btn-farmer-view" onclick="openFarmerDetails(3)">ფერმის ნახვა →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farmer 4 -->
+        <div class="farmer-card">
+          <div class="farmer-header-banner banner-kartli"></div>
+          <div class="farmer-card-body">
+            <div class="farmer-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?auto=format&fit=crop&w=300&q=80" alt="ლევან ბერიძე" class="farmer-avatar">
+              <span class="farmer-verify-badge" title="ვერიფიცირებული ფერმერი">✓</span>
+            </div>
+            <div class="farmer-meta">
+              <div class="farmer-region">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>ქვემო ქართლი, მარნეული</span>
+              </div>
+              <h3 class="farmer-name">ლევან ბერიძე</h3>
+              <span class="farm-brand">„აგრო ქართლი & სათბურები“</span>
+              <div class="farmer-rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-num">4.89</span>
+                <span class="reviews-count">(86 შეფასება)</span>
+              </div>
+              <p class="farmer-bio">
+                „თანამედროვე ეკო-სათბურები, სადაც პომიდორი, კიტრი და მწვანილი იზრდება ქიმიური დანამატების გარეშე, მზის ენერგიითა და წვეთოვანი რწყვით.“
+              </p>
+              <div class="farmer-tags">
+                <span class="ftag">ვარდისფერი პომიდორი</span>
+                <span class="ftag">კიტრი</span>
+                <span class="ftag">ახალი მწვანილი</span>
+              </div>
+              <div class="farmer-card-footer">
+                <span class="farmer-product-count">19 პროდუქტი</span>
+                <button class="btn-farmer-view" onclick="openFarmerDetails(4)">ფერმის ნახვა →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Agritourism Showcase Section -->
+  <section class="agritourism-section" id="agritourism">
+    <div class="container">
+      
+      <div class="agritourism-banner">
+        <div class="agritourism-content">
+          <div class="section-pretitle text-light">
+            <span class="leaf-icon">🍇</span>
+            <span>აგროტურიზმი & გამოცდილება</span>
+          </div>
+          <h2 class="agritourism-title">ეწვიე ქართულ ფერმებს, მიიღე მონაწილეობა რთველში და დააგემოვნე ნამდვილი გემოები</h2>
+          <p class="agritourism-desc">
+            აღმოაჩინე უნიკალური აგროტურები: ყველის ამოყვანა იმერეთში, ყურძნის კრეფა და წურვა კახეთში, ჩაის პლანტაციები გურიაში და ალპური საფუტკრეები სვანეთში.
+          </p>
+          <div class="agritourism-perks">
+            <div class="perk-item">
+              <span class="perk-icon">🏡</span>
+              <span>საოჯახო სასტუმროები & კოტეჯები</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">🍷</span>
+              <span>ქვევრის ღვინის დეგუსტაცია</span>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">🧀</span>
+              <span>კულინარიული მასტერკლასები</span>
+            </div>
+          </div>
+          <div class="agritourism-btn-wrap">
+            <a href="#products" class="btn-accent-large" onclick="filterByCategory('tourism')">
+              ტურების დათვალიერება
+            </a>
+          </div>
+        </div>
+        <div class="agritourism-image-wrap">
+          <img src="https://images.unsplash.com/photo-1592417817098-8f3d69109853?auto=format&fit=crop&w=800&q=80" alt="ღვინის რთველი და აგროტურიზმი საქართველოში" class="agri-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Agricultural Machinery / Services Highlight -->
+  <section class="machinery-section" id="machinery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-pretitle">
+          <span class="leaf-icon">🚜</span>
+          <span>ტექნიკა და მომსახურება</span>
+        </div>
+        <h2 class="section-title">სასოფლო-სამეურნეო ტექნიკა & სერვისები</h2>
+        <p class="section-subtitle">ტრაქტორები, მისაბმელები, სარწყავი სისტემები და აგრონომიული კონსულტაციები ფერმერებისთვის</p>
+      </div>
+
+      <div class="machinery-grid">
+        <div class="machinery-card">
+          <div class="machinery-img">
+            <img src="https://images.unsplash.com/photo-1595188802202-bcf23cece885?auto=format&fit=crop&w=600&q=80" alt="ტრაქტორი და აგროტექნიკა">
+            <span class="machinery-tag">იჯარა & გაყიდვა</span>
+          </div>
+          <div class="machinery-info">
+            <h3>მინი ტრაქტორები და დამუშავება</h3>
+            <p>მცირე და საშუალო მეურნეობებისთვის განკუთვნილი თანამედროვე ტექნიკა ხელმისაწვდომ ფასად.</p>
+            <div class="machinery-footer">
+              <span class="price-hint">დღიური იჯარა 120 ₾-დან</span>
+              <button class="btn-sm-outline" onclick="showNotification('მოთხოვნა გაიგზავნა! მალე დაგიკავშირდებით.')">დაკავშირება</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="machinery-card">
+          <div class="machinery-img">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80" alt="სარწყავი სისტემები">
+            <span class="machinery-tag">მონტაჟი & პროექტირება</span>
+          </div>
+          <div class="machinery-info">
+            <h3>წვეთოვანი და დაწვიმებითი სარწყავი</h3>
+            <p>ვენახების, ხეხილის ბაღებისა და სათბურების ეფექტური ირიგაციის სრული სისტემები გარანტიით.</p>
+            <div class="machinery-footer">
+              <span class="price-hint">პროექტირება უფასოა</span>
+              <button class="btn-sm-outline" onclick="showNotification('მოთხოვნა გაიგზავნა! მალე დაგიკავშირდებით.')">დაკავშირება</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="machinery-card">
+          <div class="machinery-img">
+            <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80" alt="ნერგები და ბიო-სასუქი">
+            <span class="machinery-tag">სერტიფიცირებული</span>
+          </div>
+          <div class="machinery-info">
+            <h3>ელიტური ნერგები & ბიო-სასუქები</h3>
+            <p>ენდემური ქართული ვაზის ჯიშები, ხეხილი და ევროპული სტანდარტის ორგანული ბიოსასუქები.</p>
+            <div class="machinery-footer">
+              <span class="price-hint">საბითუმო ფასები</span>
+              <button class="btn-sm-outline" onclick="showNotification('მოთხოვნა გაიგზავნა! მალე დაგიკავშირდებით.')">დაკავშირება</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farmer Onboarding / CTA Section -->
+  <section class="become-seller-section" id="become-seller">
+    <div class="container">
+      <div class="seller-cta-card">
+        <div class="seller-cta-text">
+          <span class="badge-pill-white">🇬🇪 ფერმერებისთვის & მწარმოებლებისთვის</span>
+          <h2 class="seller-cta-title">გაქვს ფერმა ან საოჯახო წარმოება?</h2>
+          <p class="seller-cta-desc">
+            შემოუერთდი Farms.ge-ს საზოგადოებას, განათავსე შენი პროდუქცია უფასოდ და მიიღე შეკვეთები ათასობით მომხმარებლისგან საქართველოს მასშტაბით.
+          </p>
+          <div class="seller-benefits">
+            <div class="benefit-item">
+              <span class="b-icon">💰</span>
+              <span>პირდაპირი შემოსავალი შუამავლების გარეშე</span>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">📦</span>
+              <span>ჩვენ ვუზრუნველყოფთ ლოჯისტიკასა და მიწოდებას</span>
+            </div>
+            <div class="benefit-item">
+              <span class="b-icon">📊</span>
+              <span>მარტივი პანელი შეკვეთების სამართავად</span>
+            </div>
+          </div>
+          <div class="seller-buttons">
+            <button class="btn-accent-cta" onclick="openAuthModal('farmer-register')">
+              დარეგისტრირდი როგორც ფერმერი
+            </button>
+            <button class="btn-outline-white" onclick="showFarmerHelpModal()">
+              როგორ მუშაობს?
+            </button>
+          </div>
+        </div>
+        <div class="seller-cta-badge-card">
+          <div class="seller-quote-box">
+            <div class="quote-stars">★★★★★</div>
+            <p class="quote-text">
+              „Farms.ge-ზე რეგისტრაციის შემდეგ ჩემი თაფლის გაყიდვები გასამმაგდა. ახლა თბილისსა და ბათუმში მუდმივი მომხმარებლები მყავს!“
+            </p>
+            <div class="quote-author">
+              <img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&w=100&q=80" alt="გიორგი">
+              <div>
+                <strong>გიორგი მელაძე</strong>
+                <span>მეფუტკრე, კახეთი</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Slide-out Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title-row">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <h3>კალათა</h3>
+        <span class="cart-drawer-count" id="cartDrawerCount">(0)</span>
+      </div>
+      <button class="cart-close-btn" id="closeCartBtn">&times;</button>
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="cart-shipping-notice">
+      <div class="shipping-info">
+        <span id="shippingText">დაამატეთ კიდევ 50 ₾ უფასო მიწოდებისთვის</span>
+      </div>
+      <div class="shipping-progress-bg">
+        <div class="shipping-progress-bar" id="shippingProgressBar" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Items dynamically populated -->
+      <div class="cart-empty-state" id="cartEmptyState">
+        <div class="empty-icon">🧺</div>
+        <h4>შენი კალათა ცარიელია</h4>
+        <p>დაათვალიერე ქართველი ფერმერების პროდუქცია და დაამატე კალათაში</p>
+        <button class="btn-primary" onclick="closeCart(); scrollToSection('products');">პროდუქტების ნახვა</button>
+      </div>
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-subtotal-row">
+        <span>ჯამი:</span>
+        <span class="subtotal-amount" id="cartSubtotalAmount">0 ₾</span>
+      </div>
+      <div class="cart-delivery-row">
+        <span>მიწოდება:</span>
+        <span class="delivery-amount" id="cartDeliveryAmount">5 ₾</span>
+      </div>
+      <div class="cart-total-row">
+        <span>სულ გადასახდელი:</span>
+        <span class="total-amount" id="cartTotalAmount">0 ₾</span>
+      </div>
+      <button class="btn-primary full-width checkout-btn" onclick="handleCheckout()">
+        <span>შეკვეთის გაფორმება</span>
+        <span class="checkout-arrow">→</span>
+      </button>
+      <p class="cart-guarantee">🛡️ უსაფრთხო ანგარიშსწორება ბარათით ან კურიერთან</p>
+    </div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <!-- Wishlist Drawer / Modal -->
+  <div class="wishlist-drawer" id="wishlistDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title-row">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E63946" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <h3>რჩეული პროდუქტები</h3>
+        <span class="cart-drawer-count" id="wishlistDrawerCount">(0)</span>
+      </div>
+      <button class="cart-close-btn" id="closeWishlistBtn">&times;</button>
+    </div>
+    <div class="cart-items-container" id="wishlistItemsContainer">
+      <div class="cart-empty-state" id="wishlistEmptyState">
+        <div class="empty-icon">❤️</div>
+        <h4>რჩეულებში პროდუქტი არ გაქვს</h4>
+        <p>დააჭირე გულის ნიშანს ნებისმიერ პროდუქტზე მის შესანახად</p>
+      </div>
+    </div>
+  </div>
+  <div class="wishlist-overlay" id="wishlistOverlay"></div>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-backdrop" onclick="closeQuickView()"></div>
+    <div class="modal-dialog modal-lg">
+      <button class="modal-close-btn" onclick="closeQuickView()">&times;</button>
+      <div class="quickview-body" id="quickViewBody">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Modal (Login / Register / Farmer Registration) -->
+  <div class="modal" id="authModal">
+    <div class="modal-backdrop" onclick="closeAuthModal()"></div>
+    <div class="modal-dialog modal-auth">
+      <button class="modal-close-btn" onclick="closeAuthModal()">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">შესვლა</button>
+        <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">რეგისტრაცია</button>
+        <button class="auth-tab-btn" id="tabFarmerBtn" onclick="switchAuthTab('farmer-register')">ფერმერის რეგისტრაცია</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="loginForm" onsubmit="event.preventDefault(); handleAuthSubmit('login');">
+        <h3>კეთილი იყოს თქვენი მობრძანება!</h3>
+        <p class="auth-sub">შეიყვანეთ მონაცემები თქვენს პროფილში შესასვლელად</p>
+        
+        <div class="form-group">
+          <label for="loginEmail">ელ-ფოსტა ან ტელეფონის ნომერი</label>
+          <input type="text" id="loginEmail" placeholder="მაგ. user@farms.ge ან 599 00 00 00" required>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">პაროლი</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required>
+        </div>
+
+        <div class="form-row-between">
+          <label class="checkbox-label">
+            <input type="checkbox" checked>
+            <span>დამიმახსოვრე</span>
+          </label>
+          <a href="#" class="forgot-link" onclick="event.preventDefault(); showNotification('პაროლის აღდგენის ბმული გამოგზავნილია');">დაგავიწყდათ პაროლი?</a>
+        </div>
+
+        <button type="submit" class="btn-primary full-width">სისტემაში შესვლა</button>
+      </form>
+
+      <!-- Register Form -->
+      <form class="auth-form hidden" id="registerForm" onsubmit="event.preventDefault(); handleAuthSubmit('register');">
+        <h3>შექმენი ახალი ანგარიში</h3>
+        <p class="auth-sub">დარეგისტრირდი და შეიძინე უმაღლესი ხარისხის ქართული პროდუქტი</p>
+        
+        <div class="form-group">
+          <label for="regName">სახელი და გვარი</label>
+          <input type="text" id="regName" placeholder="მაგ. ანა ბერიძე" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">ელ-ფოსტა</label>
+          <input type="email" id="regEmail" placeholder="ana@example.ge" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regPhone">ტელეფონის ნომერი</label>
+          <input type="tel" id="regPhone" placeholder="5XX XX XX XX" required>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">პაროლი</label>
+          <input type="password" id="regPassword" placeholder="მინიმუმ 6 სიმბოლო" required>
+        </div>
+
+        <button type="submit" class="btn-primary full-width">რეგისტრაცია</button>
+      </form>
+
+      <!-- Farmer Registration Form -->
+      <form class="auth-form hidden" id="farmerRegisterForm" onsubmit="event.preventDefault(); handleAuthSubmit('farmer-register');">
+        <h3>ფერმერის რეგისტრაცია</h3>
+        <p class="auth-sub">გაყიდეთ თქვენი მოსავალი და პროდუქტი მთელ საქართველოში</p>
+        
+        <div class="form-group">
+          <label for="farmFarmerName">სრული სახელი / მეურნეობის დასახელება</label>
+          <input type="text" id="farmFarmerName" placeholder="მაგ. მელაძის მეურნეობა" required>
+        </div>
+
+        <div class="form-row-grid">
+          <div class="form-group">
+            <label for="farmRegion">რეგიონი</label>
+            <select id="farmRegion" required>
+              <option value="კახეთი">კახეთი</option>
+              <option value="იმერეთი">იმერეთი</option>
+              <option value="ქვემო ქართლი">ქვემო ქართლი</option>
+              <option value="შიდა ქართლი">შიდა ქართლი</option>
+              <option value="სამეგრელო">სამეგრელო</option>
+              <option value="რაჭა">რაჭა</option>
+              <option value="გურია">გურია</option>
+              <option value="აჭარა">აჭარა</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="farmCategorySelect">ძირითადი მიმართულება</label>
+            <select id="farmCategorySelect" required>
+              <option value="dairy">რძის პროდუქტი</option>
+              <option value="honey">თაფლი და მეფუტკრეობა</option>
+              <option value="produce">ხილი და ბოსტნეული</option>
+              <option value="wine">ღვინო და მარანი</option>
+              <option value="meat">ხორცი და მეცხოველეობა</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="farmPhone">საკონტაქტო ტელეფონი</label>
+          <input type="tel" id="farmPhone" placeholder="5XX XX XX XX" required>
+        </div>
+
+        <button type="submit" class="btn-accent-cta full-width">განაცხადის გაგზავნა</button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <!-- Col 1: Brand & Mission -->
+        <div class="footer-col col-brand">
+          <div class="footer-logo">
+            <div class="logo-icon-wrapper">
+              <svg viewBox="0 0 40 40" fill="none" class="brand-svg">
+                <rect width="40" height="40" rx="10" fill="#2D6A4F"/>
+                <path d="M20 7C14 11 11 17 11 24C11 28 14 31 18 31C22 31 29 27 29 16C29 12 25 8 20 7Z" fill="#74C69D"/>
+                <path d="M19 12V32" stroke="#1B4332" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="footer-brand-name">Farms<span class="accent-text">.ge</span></span>
+          </div>
+          <p class="footer-desc">
+            ქართული აგრო მარკეტპლეისი. ვაკავშირებთ ადგილობრივ ფერმერებსა და მომხმარებლებს, რათა ნატურალური და ხარისხიანი ქართული პროდუქტი ყველასთვის ხელმისაწვდომი იყოს.
+          </p>
+          <div class="footer-contact-info">
+            <div class="contact-line">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+995 (32) 2 100 200</span>
+            </div>
+            <div class="contact-line">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>info@farms.ge</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Categories -->
+        <div class="footer-col">
+          <h4 class="footer-heading">კატეგორიები</h4>
+          <ul class="footer-links">
+            <li><a href="#products" onclick="filterByCategory('produce')">ბოსტნეული და ხილი</a></li>
+            <li><a href="#products" onclick="filterByCategory('honey')">ნატურალური თაფლი</a></li>
+            <li><a href="#products" onclick="filterByCategory('dairy')">იმერული ყველი & სულგუნი</a></li>
+            <li><a href="#products" onclick="filterByCategory('wine')">ქვევრის ღვინო & მარანი</a></li>
+            <li><a href="#products" onclick="filterByCategory('meat')">სოფლის ხორცი და ფრინველი</a></li>
+            <li><a href="#machinery">აგროტექნიკა & ირიგაცია</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Regions -->
+        <div class="footer-col">
+          <h4 class="footer-heading">რეგიონები</h4>
+          <ul class="footer-links">
+            <li><a href="#products" onclick="filterByRegion('კახეთი')">კახეთის მეურნეობები</a></li>
+            <li><a href="#products" onclick="filterByRegion('იმერეთი')">იმერეთის ყველი და ღვინო</a></li>
+            <li><a href="#products" onclick="filterByRegion('ქვემო ქართლი')">ქართლის ბოსტნეული</a></li>
+            <li><a href="#products" onclick="filterByRegion('სამეგრელო')">სამეგრელოს სულგუნი</a></li>
+            <li><a href="#products" onclick="filterByRegion('რაჭა')">რაჭული ლორი და ღვინო</a></li>
+            <li><a href="#products" onclick="filterByRegion('გურია')">გურიის ჩაი და თხილი</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Platform & Farmers -->
+        <div class="footer-col">
+          <h4 class="footer-heading">ფერმერებისთვის</h4>
+          <ul class="footer-links">
+            <li><a href="#become-seller">როგორ გავყიდო Farms.ge-ზე</a></li>
+            <li><a href="#become-seller" onclick="openAuthModal('farmer-register')">ფერმერის რეგისტრაცია</a></li>
+            <li><a href="#">მიწოდება და ლოჯისტიკა</a></li>
+            <li><a href="#">ხარისხის სტანდარტები</a></li>
+            <li><a href="#">ხშირად დასმული კითხვები</a></li>
+          </ul>
+
+          <div class="newsletter-box">
+            <span class="news-label">მიიღე სეზონური შეთავაზებები:</span>
+            <div class="news-input-wrap">
+              <input type="email" placeholder="თქვენი ელ-ფოსტა">
+              <button onclick="showNotification('გმადლობთ გამოწერისთვის!')">✓</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 Farms.ge — ყველა უფლება დაცულია. დამზადებულია სიყვარულით საქართველოში 🇬🇪</p>
+        <div class="footer-bottom-links">
+          <a href="#">წესები და პირობები</a>
+          <a href="#">კონფიდენციალურობა</a>
+          <a href="#">უსაფრთხო გადახდები</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
